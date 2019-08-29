@@ -1,4 +1,6 @@
-const { SchemaDirectiveVisitor } = require("apollo-server-express");
+// const { SchemaDirectiveVisitor } = require("apollo-server-express");
+const { SchemaDirectiveVisitor } = require("apollo-server-lambda");
+
 const { defaultFieldResolver } = require("graphql");
 
 module.exports = class IsAuthUserDirective extends SchemaDirectiveVisitor {

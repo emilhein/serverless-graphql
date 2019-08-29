@@ -2,7 +2,6 @@ const { Movies } = require("./models/movies");
 const { Users } = require("./models/users");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
-process.env.JWT_SECRET = "my secret";
 
 const findUser = async (username, password) => {
     const foundUser = Users.find(e => e.username === username);

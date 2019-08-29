@@ -1,0 +1,21 @@
+# serverless.yml
+plugins:
+    - serverless-offline
+    - serverless-dotenv-plugin
+
+service: apollo-lambda
+provider:
+    name: aws
+    runtime: nodejs8.10
+functions:
+    graphql:
+        handler: app.graphqlHandler
+        events:
+            - http:
+                  path: graphql
+                  method: post
+                  cors: true
+            - http:
+                  path: graphql
+                  method: get
+                  cors: true

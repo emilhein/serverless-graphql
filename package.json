@@ -3,14 +3,21 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "node app.js"
+        "start": "node app.js",
+        "serverless": "sls offline"
     },
     "dependencies": {
         "apollo-server-express": "^2.9.0",
+        "apollo-server-lambda": "2.9.0",
         "debug": "~2.6.9",
         "jsonwebtoken": "8.5.1",
         "bcrypt": "3.0.6",
         "express": "~4.16.1",
-        "morgan": "~1.9.1"
+        "morgan": "~1.9.1",
+        "graphql": "14.5.3"
+    },
+    "devDependencies": {
+        "serverless-dotenv-plugin": "^2.1.1",
+        "serverless-offline": "^5.10.1"
     }
 }
