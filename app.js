@@ -1,6 +1,3 @@
-// const { ApolloServer } = require("apollo-server-express");
-// const express = require("express");
-// const logger = require("morgan");
 const { ApolloServer } = require("apollo-server-lambda");
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
@@ -43,12 +40,3 @@ const server = new ApolloServer({
 });
 
 exports.graphqlHandler = server.createHandler();
-// const app = express();
-// server.applyMiddleware({ app });
-
-// app.use(logger("dev"));
-// app.use(express.json());
-
-// const port = 3001;
-// app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-// module.exports = app;
