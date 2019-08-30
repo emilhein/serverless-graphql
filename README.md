@@ -10,6 +10,8 @@ Create a file called ".env" in the root of the project and populate it with the 
 JWT_SECRET=SOME_RANDOM_SECRET
 ```
 
+To run a local server do the following:
+
 ```js
 npm install
 npm run dev
@@ -35,7 +37,8 @@ query {  movies {
   }
 }
 
-
+### NOTE
+In other to use the `scoutbase_rating` field you must include a header called "authorization" with a valid jwt token ("Bearer XXXXX"), that you can recieve by calling the mutations "login" or "createUser"
 query {
   movies {
     scoutbase_rating
