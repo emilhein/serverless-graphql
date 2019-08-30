@@ -1,12 +1,22 @@
 # Use the api
 
-Do an 
-```js
-npm install
-npm start
+## Get started
+
+This project uses the serverless framework and you should therefore install this globally (and setup credentials if you wish to deploy the project)
+
+Create a file called ".env" in the root of the project and populate it with the following:
+
+```
+JWT_SECRET=SOME_RANDOM_SECRET
 ```
 
-Examples:
+```js
+npm install
+npm run dev
+```
+
+## Examples:
+
 ```js
 query {  movies {
     title
@@ -62,4 +72,10 @@ mutation {
   }
 }
 
+```
+
+## Deployment
+
+```
+npm run deploy
 ```
