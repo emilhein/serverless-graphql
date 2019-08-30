@@ -1,6 +1,6 @@
 const { Movies } = require("./models/movies");
 const { Users } = require("./models/users");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
 
 const findUser = async (username, password) => {

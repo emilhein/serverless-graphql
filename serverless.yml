@@ -6,10 +6,11 @@ plugins:
 service: apollo-lambda
 provider:
     name: aws
+    region: eu-west-1
     runtime: nodejs8.10
 functions:
     graphql:
-        handler: app.graphqlHandler
+        handler: lambdas/graphql.graphqlHandler
         events:
             - http:
                   path: graphql

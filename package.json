@@ -3,13 +3,13 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "node app.js",
-        "serverless": "sls offline"
+        "deploy": "serverless deploy --aws-profile personal",
+        "dev": "sls offline"
     },
     "dependencies": {
         "apollo-server-lambda": "2.9.0",
         "jsonwebtoken": "8.5.1",
-        "bcrypt": "3.0.6",
+        "bcryptjs": "2.4.3",
         "graphql": "14.5.4"
     },
     "devDependencies": {
