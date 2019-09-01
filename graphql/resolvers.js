@@ -1,4 +1,4 @@
-const { Movies } = require("./models/movies");
+const { retrieveMovies, addMovie, deleteMovie } = require("./models/movies");
 const { Users } = require("./models/users");
 const bcrypt = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
@@ -23,11 +23,17 @@ const getRandom = (min, max, decimalPlaces) => {
 
 const resolvers = {
     Query: {
-        movies: () =>
-            Movies.map(e => {
-                e.scoutbase_rating = `${getRandom(5, 10, 2)}`;
-                return e;
-            })
+        movies: async () => {
+            try {
+                let movies = await retrieveMovies();
+                return movies.map(e => {
+                    e.scoutbase_rating = `${getRandom(5, 10, 2)}`;
+                    return e;
+                });
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
     },
 
     Mutation: {
@@ -51,6 +57,24 @@ const resolvers = {
                 return foundUser;
             } catch (error) {
                 return error;
+            }
+        },
+        addMovie: async (parent, { input }, { user }) => {
+            try {
+                let movie = { ...input, actors: [{ name: "", birthday: "", country: "", directors: [] }] };
+                await addMovie(movie);
+                return movie;
+            } catch (error) {
+                return error;
+            }
+        },
+        deleteMovie: async (parent, { input }, { user }) => {
+            try {
+                let { title } = input;
+                await deleteMovie({ title });
+                return { deleted: true };
+            } catch (error) {
+                return { deleted: false };
             }
         }
     }

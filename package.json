@@ -10,6 +10,7 @@
         "apollo-server-lambda": "2.9.0",
         "jsonwebtoken": "8.5.1",
         "bcryptjs": "2.4.3",
+        "aws-sdk": "2.521.0",
         "graphql": "14.5.4"
     },
     "devDependencies": {
