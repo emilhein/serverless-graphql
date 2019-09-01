@@ -1,6 +1,8 @@
 const AWS = require("aws-sdk");
-const credentials = new AWS.SharedIniFileCredentials({ profile: process.env.AWS_PROFILE || "default" });
-AWS.config.credentials = credentials;
+if (process.env.NODE_ENV === "development") {
+    const credentials = new AWS.SharedIniFileCredentials({ profile: process.env.AWS_PROFILE || "default" });
+    AWS.config.credentials = credentials;
+}
 const s3Lib = require("aws-sdk/clients/s3");
 const DEVBUCKET = "ehe-development";
 const s3 = new s3Lib({ region: "eu-west-1" });

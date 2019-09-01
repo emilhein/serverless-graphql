@@ -9,12 +9,9 @@ provider:
     region: eu-west-1
     runtime: nodejs8.10
     iamRoleStatements:
-        Effect: Allow
-        Action:
-            - s3:*
-        Resource:
-            - "arn:aws:s3:::ehe-development"
-
+        - Effect: "Allow"
+          Action: s3:*
+          Resource: arn:aws:s3:::ehe-development/*
 functions:
     graphql:
         handler: lambdas/graphql.graphqlHandler

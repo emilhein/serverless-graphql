@@ -1,25 +1,8 @@
 const { retrieveMovies, addMovie, deleteMovie } = require("./models/movies");
-const { Users } = require("./models/users");
+const { retrieveUsers, addUser } = require("./models/users");
+const { getRandom, findUser } = require("./../helpers/utils");
 const bcrypt = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
-
-const findUser = async (username, password) => {
-    const foundUser = Users.find(e => e.username === username);
-    if (!foundUser) {
-        throw new Error("No user with that email");
-    }
-    const valid = await bcrypt.compare(password, foundUser.password);
-
-    if (!valid) {
-        throw new Error("Incorrect password");
-    }
-    return foundUser;
-};
-const getRandom = (min, max, decimalPlaces) => {
-    var rand = Math.random() * (max - min) + min;
-    var power = Math.pow(10, decimalPlaces);
-    return Math.floor(rand * power) / power;
-};
 
 const resolvers = {
     Query: {
@@ -38,6 +21,7 @@ const resolvers = {
 
     Mutation: {
         createUser: async (parent, user) => {
+            let Users = await retrieveUsers();
             let newUser = {
                 username: user.username,
                 password: await bcrypt.hash(user.password, 10),
@@ -46,7 +30,7 @@ const resolvers = {
                     name: user.username
                 }
             };
-            Users.push(newUser);
+            await addUser(Users, newUser);
             newUser.token = jsonwebtoken.sign({ username: user.username, password: newUser.password }, process.env.JWT_SECRET, { expiresIn: "1y" });
             return newUser;
         },

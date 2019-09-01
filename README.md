@@ -38,7 +38,7 @@ query {  movies {
 }
 
 ### NOTE
-In other to use the `scoutbase_rating` field you must include a header called "authorization" with a valid jwt token ("Bearer XXXXX"), that you can recieve by calling the mutations "login" or "createUser"
+In other to use the `scoutbase_rating` field you must include a header called "Authorization" with a valid jwt token ("Bearer XXXXX"), that you can recieve by calling the mutations "login" or "createUser"
 query {
   movies {
     scoutbase_rating

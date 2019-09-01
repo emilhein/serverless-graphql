@@ -17,9 +17,10 @@ const getUser = token => {
 
 const context = ({ event }) => {
     if (!event.multiValueHeaders) return { user: null };
-    if (!event.multiValueHeaders.authorization) return { user: null };
-    const tokenWithBearer = event.multiValueHeaders.authorization[0] || "";
+    if (!event.multiValueHeaders.Authorization) return { user: null };
+    const tokenWithBearer = event.multiValueHeaders.Authorization[0] || "";
     const token = tokenWithBearer.split(" ")[1];
+
     const user = getUser(token);
     return { user };
 };

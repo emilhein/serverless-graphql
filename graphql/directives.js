@@ -12,7 +12,7 @@ module.exports = class IsAuthUserDirective extends SchemaDirectiveVisitor {
                 const result = await resolve.apply(this, args);
                 return result;
             } else {
-                throw new Error("You must be the authenticated user to get    this information");
+                throw new Error("You must be the authenticated user to get this information");
             }
         };
     }
