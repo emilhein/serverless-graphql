@@ -1,4 +1,3 @@
-// const { gql } = require("apollo-server-express");
 const { gql } = require("apollo-server-lambda");
 
 // Construct a schema using GraphQL schema language
@@ -57,11 +56,6 @@ const typeDefs = gql`
         year: Int!
         rating: String!
     }
-    # type movieCreatedReponse {
-    #     title: String!
-    #     year: Int!
-    #     rating: String!
-    # }
 `;
 
 module.exports = typeDefs;

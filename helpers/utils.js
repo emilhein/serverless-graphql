@@ -1,5 +1,17 @@
 const { retrieveUsers } = require("./../graphql/models/users");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
+const getUserFromToken = token => {
+    try {
+        if (token) {
+            return jwt.verify(token, process.env.JWT_SECRET);
+        }
+        return null;
+    } catch (err) {
+        return null;
+    }
+};
 const findUser = async (username, password) => {
     const Users = await retrieveUsers();
     const foundUser = Users.find(e => e.username === username);
@@ -20,4 +32,4 @@ const getRandom = (min, max, decimalPlaces) => {
     return Math.floor(rand * power) / power;
 };
 
-module.exports = { getRandom, findUser };
+module.exports = { getRandom, findUser, getUserFromToken };
