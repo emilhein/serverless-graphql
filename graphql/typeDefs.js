@@ -9,19 +9,20 @@ const typeDefs = gql`
         scoutbase_rating: String @isAuthenticated(reason: "You need to send a valid token.")
         year: Int!
         rating: String!
-        actors: [person]
+        actors: [person]!
     }
     type person {
         name: String!
         birthday: String!
         country: String!
-        directors: [director]
+        directors: [director]!
     }
     type director {
         name: String!
         birthday: String!
         country: String!
     }
+
     type publicUser {
         id: Int!
         name: String!
@@ -35,7 +36,8 @@ const typeDefs = gql`
     }
 
     type Query {
-        movies: [movie]
+        movies: [movie]!
+        movieByTitle(title: String!): movie
     }
 
     type Mutation {

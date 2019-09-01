@@ -1,6 +1,10 @@
 const { retrieveMovies, addMovie, deleteMovie } = require("./../models/movies");
 const { getRandom } = require("./../../helpers/utils");
-
+const addRatings = movies =>
+    movies.map(e => {
+        e.scoutbase_rating = `${getRandom(5, 10, 2)}`;
+        return e;
+    });
 const mutations = {
     deleteMovie: async (parent, { input }, { user }) => {
         try {
@@ -25,10 +29,18 @@ const queries = {
     movies: async () => {
         try {
             let movies = await retrieveMovies();
-            return movies.map(e => {
-                e.scoutbase_rating = `${getRandom(5, 10, 2)}`;
-                return e;
-            });
+            return addRatings(movies);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    },
+    movieByTitle: async (parent, { title }, { user }) => {
+        try {
+            const movies = await retrieveMovies();
+            const moviesWithRating = addRatings(movies);
+
+            let foundMovie = moviesWithRating.find(e => e.title.toLowerCase() === title);
+            return foundMovie;
         } catch (error) {
             return Promise.reject(error);
         }
