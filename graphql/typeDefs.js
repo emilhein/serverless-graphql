@@ -5,22 +5,27 @@ const { gql } = require("apollo-server-lambda");
 const typeDefs = gql`
     directive @isAuthenticated(reason: String = "You need to send a valid token.") on FIELD_DEFINITION
 
-    type movies {
-        title: String
+    type movie {
+        title: String!
         scoutbase_rating: String @isAuthenticated(reason: "You need to send a valid token.")
-        year: Int
-        rating: String
+        year: Int!
+        rating: String!
         actors: [person]
     }
     type person {
         name: String!
         birthday: String!
         country: String!
-        directors: [person]
+        directors: [director]
+    }
+    type director {
+        name: String!
+        birthday: String!
+        country: String!
     }
     type publicUser {
         id: Int!
-        name: String
+        name: String!
     }
 
     type user {
@@ -31,13 +36,32 @@ const typeDefs = gql`
     }
 
     type Query {
-        movies: [movies]
+        movies: [movie]
     }
 
     type Mutation {
         createUser(username: String!, password: String!): user
         login(username: String!, password: String!): user
+        addMovie(input: createMovieInput!): movie @isAuthenticated(reason: "You need to send a valid token.")
+        deleteMovie(input: deleteMovieInput!): movieReturn @isAuthenticated(reason: "You need to send a valid token.")
     }
+
+    input deleteMovieInput {
+        title: String!
+    }
+    type movieReturn {
+        deleted: Boolean!
+    }
+    input createMovieInput {
+        title: String!
+        year: Int!
+        rating: String!
+    }
+    # type movieCreatedReponse {
+    #     title: String!
+    #     year: Int!
+    #     rating: String!
+    # }
 `;
 
 module.exports = typeDefs;
