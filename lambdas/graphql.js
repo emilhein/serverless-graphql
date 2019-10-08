@@ -3,7 +3,7 @@ const typeDefs = require("../graphql/typeDefs");
 const resolvers = require("../graphql/resolvers");
 const authenticatedDirective = require("../graphql/directives");
 const { getUserFromToken } = require("../helpers/utils");
-
+const sentryLogging = require("./../logging/sentry");
 const context = ({ event }) => {
     if (!event.multiValueHeaders) return { user: null };
     if (!event.multiValueHeaders.Authorization) return { user: null };
