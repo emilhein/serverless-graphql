@@ -1,5 +1,7 @@
 ##### Demo: https://w7lo1gta9h.execute-api.eu-west-1.amazonaws.com/dev/graphql
 
+[![Build Status](https://travis-ci.org/emilhein/serverless-graphql.svg?branch=master)](https://travis-ci.org/emilhein/serverless-graphql)
+
 ## Get started
 
 This project uses the serverless framework and you should therefore install this globally (and setup credentials if you wish to deploy the project)
