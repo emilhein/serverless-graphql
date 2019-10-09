@@ -12,6 +12,10 @@ provider:
         - Effect: "Allow"
           Action: s3:*
           Resource: arn:aws:s3:::ehe-development/*
+        - Effect: Allow
+          Action:
+            - ssm:GetParameter
+          Resource: "*"          
 functions:
     graphql:
         handler: lambdas/graphql.graphqlHandler
