@@ -2,9 +2,13 @@ const { retrieveUsers, addUser } = require("./../models/users");
 const bcrypt = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
 const { findUser } = require("./../../helpers/utils");
+const { setEnvParamFromSSM } = require('./../../helpers/envHelper')
 
 const mutations = {
     createUser: async (parent, user) => {
+         if (!process.env.JWT_SECRET) {
+            await setEnvParamFromSSM("JWT_SECRET");
+         }
         let Users = await retrieveUsers();
         let newUser = {
             username: user.username,
@@ -20,6 +24,9 @@ const mutations = {
     },
     login: async (parent, { username, password }, { user }) => {
         try {
+             if (!process.env.JWT_SECRET) {
+                await setEnvParamFromSSM("JWT_SECRET");
+            }
             const foundUser = await findUser(username, password);
             foundUser.token = jsonwebtoken.sign({ username, password }, process.env.JWT_SECRET, { expiresIn: "1y" });
             return foundUser;
