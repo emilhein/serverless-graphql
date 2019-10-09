@@ -77,6 +77,13 @@ mutation {
   }
 }
 
+mutation {
+  addMovie(input: {title: "Superman", year: 2019, rating: "2"}) {
+    title
+  }
+}
+
+
 ```
 
 ## Deployment
