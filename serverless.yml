@@ -7,7 +7,7 @@ service: apollo-lambda
 provider:
     name: aws
     region: eu-west-1
-    runtime: nodejs8.10
+    runtime: nodejs10.x
     iamRoleStatements:
         - Effect: "Allow"
           Action: s3:*
