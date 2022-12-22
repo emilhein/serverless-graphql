@@ -12,7 +12,7 @@
         "aws-sdk": "2.521.0",
         "bcryptjs": "2.4.3",
         "graphql": "14.5.4",
-        "jsonwebtoken": "8.5.1"
+        "jsonwebtoken": "9.0.0"
     },
     "devDependencies": {
         "serverless-dotenv-plugin": "^2.1.1",
